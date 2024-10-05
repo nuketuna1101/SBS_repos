@@ -38,11 +38,15 @@ AFountain::AFountain()
 		Water->SetStaticMesh(SM_WATER.Object);
 	}
 	
-	static ConstructorHelpers::FObjectFinder<UParticleSystem> PS_SPLASH(TEXT("/Game/InfinityBladeGrassLands/Effects/FX_Ambient/Water/P_Water_Fountain_Splash_01.P_Water_Fountain_Splash_01"));
+	static ConstructorHelpers::FObjectFinder<UParticleSystem> PS_SPLASH(TEXT("/Game/InfinityBladeGrassLands/Effects/FX_Ambient/Water/P_Water_Fountain_Splash_Base_01.P_Water_Fountain_Splash_Base_01"));
 	if (PS_SPLASH.Succeeded()) 
 	{
 		Splash->SetTemplate(PS_SPLASH.Object);
 	}
+
+	// light setting
+	Light->SetIntensity(14000.0f);
+	Light->SetLightColor(FLinearColor::Red);
 }
 
 // Called when the game starts or when spawned
