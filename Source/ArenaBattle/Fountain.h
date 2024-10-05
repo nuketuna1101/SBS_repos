@@ -37,4 +37,7 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	UParticleSystemComponent* Splash; //분수의 물튀기는 파티클
+
+	UPROPERTY(EditAnywhere, Category = ID)
+	int32 ID;
 };
