@@ -2,6 +2,7 @@
 
 
 #include "Fountain.h"
+#include "Math/UnrealMathUtility.h"
 
 // Sets default values
 AFountain::AFountain()
@@ -46,7 +47,16 @@ AFountain::AFountain()
 
 	// light setting
 	Light->SetIntensity(14000.0f);
-	Light->SetLightColor(FLinearColor::Red);
+	//Light->SetLightColor(FLinearColor::Red);
+
+	// randomly setting light color
+	float r, g, b;
+	r = FMath::RandRange(0.0f, 1.0f);
+	g = FMath::RandRange(0.0f, 1.0f);
+	b = FMath::RandRange(0.0f, 1.0f);
+	FLinearColor myLColor = FLinearColor(r, g, b);
+	Light->SetLightColor(myLColor);
+
 }
 
 // Called when the game starts or when spawned
@@ -60,6 +70,4 @@ void AFountain::BeginPlay()
 void AFountain::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
-
