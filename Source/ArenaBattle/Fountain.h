@@ -46,4 +46,16 @@ public:
 private:
 	UPROPERTY(EditAnywhere, Category = Stat, Meta = (AllowPrivateAccess = true))
 	float RotateSpeed;
+
+	UPROPERTY(EditAnywhere, Category = Stat, Meta = (AllowPrivateAccess = true))
+	float MoveSpeed;
+
+	UPROPERTY(EditAnywhere, Category = Stat, Meta = (AllowPrivateAccess = true))
+	float MovePeriod;
+
+	UPROPERTY(EditAnywhere, Category = Stat, Meta = (AllowPrivateAccess = true))
+	FVector TargetLocation;
+
+	UFUNCTION()
+	void GenerateRandomDestination();
 };
