@@ -47,8 +47,6 @@ AFountain::AFountain()
 
 	// light setting
 	Light->SetIntensity(14000.0f);
-	//Light->SetLightColor(FLinearColor::Red);
-
 	// randomly setting light color
 	float r, g, b;
 	r = FMath::RandRange(0.0f, 1.0f);
@@ -56,6 +54,9 @@ AFountain::AFountain()
 	b = FMath::RandRange(0.0f, 1.0f);
 	FLinearColor myLColor = FLinearColor(r, g, b);
 	Light->SetLightColor(myLColor);
+
+	// rotation
+	RotateSpeed = 30.0f;
 
 }
 
@@ -65,14 +66,25 @@ void AFountain::BeginPlay()
 	Super::BeginPlay();
 	
 	// logging
-	//UE_LOG(ArenaBattle, Warning, TEXT("Actor Name : %s, ID: %d, Location x : %.3f"), *GetName(), ID, GetActorLocation().X);
-
 	ABLOG_S(Warning);
 	ABLOG(Warning, TEXT("Actor Name : %s, ID: %d, Location x : %.3f"), *GetName(), ID, GetActorLocation().X)
+}
+
+void AFountain::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+	ABLOG_S(Warning);
+}
+
+void AFountain::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+	ABLOG_S(Warning);
 }
 
 // Called every frame
 void AFountain::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	AddActorLocalRotation(FRotator(0.0f, RotateSpeed * DeltaTime, 0.0f));
 }
