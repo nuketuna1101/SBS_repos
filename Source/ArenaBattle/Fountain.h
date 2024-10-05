@@ -51,9 +51,6 @@ private:
 	float MoveSpeed;
 
 	UPROPERTY(EditAnywhere, Category = Stat, Meta = (AllowPrivateAccess = true))
-	float MovePeriod;
-
-	UPROPERTY(EditAnywhere, Category = Stat, Meta = (AllowPrivateAccess = true))
 	FVector TargetLocation;
 
 	UFUNCTION()

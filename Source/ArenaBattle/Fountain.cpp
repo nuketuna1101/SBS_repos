@@ -59,8 +59,7 @@ AFountain::AFountain()
 	RotateSpeed = 30.0f;
 
 	// random move
-	MoveSpeed = 50.0f;
-	MovePeriod = 5.0f;
+	MoveSpeed = 100.0f;
 }
 
 // Called when the game starts or when spawned
@@ -97,34 +96,19 @@ void AFountain::Tick(float DeltaTime)
 	FVector dir = (TargetLocation - CurrentLocation).GetSafeNormal();
 	FVector NewLocation = CurrentLocation + (dir * MoveSpeed * DeltaTime);
 	SetActorLocation(NewLocation);
-	MovePeriod -= DeltaTime;
-
-	if (MovePeriod <= 0.0f) 
-	{
-		GenerateRandomDestination();
-		MovePeriod = 5.0f;
-	}
-
-
-	/*
-	// Check if we need to change the target location
 	if ((TargetLocation - CurrentLocation).Size() < 10.0f) // If close to target
 	{
-		MovePeriod -= DeltaTime;
-		if (MovePeriod <= 0.0f)
-		{
-			GenerateRandomDestination(); // Generate new target location
-			MovePeriod = 10.0f; // Reset the timer
-		}
+		GenerateRandomDestination(); // Generate new target location
 	}
-	*/
 }
 
 void AFountain::GenerateRandomDestination()
 {
 	float x, y, z;
-	x = FMath::RandRange(-500.0f, 500.0f);
-	y = FMath::RandRange(-500.0f, 500.0f);
+	float xConstraint = 500.0f;
+	float yConstraint = 500.0f;
+	x = FMath::RandRange(-1.0f * xConstraint, 1.0f * xConstraint);
+	y = FMath::RandRange(-1.0f * yConstraint, 1.0f * yConstraint);
 	z = 0.0f;
 	TargetLocation = FVector(x, y, z);
 	UE_LOG(LogTemp, Log, TEXT("Target Location Generated: %s"), *TargetLocation.ToString());
