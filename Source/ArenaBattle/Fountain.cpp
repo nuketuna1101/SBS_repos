@@ -65,7 +65,10 @@ void AFountain::BeginPlay()
 	Super::BeginPlay();
 	
 	// logging
-	UE_LOG(ArenaBattle, Warning, TEXT("Actor Name : %s, ID: %d, Location x : %.3f"), *GetName(), ID, GetActorLocation().X);
+	//UE_LOG(ArenaBattle, Warning, TEXT("Actor Name : %s, ID: %d, Location x : %.3f"), *GetName(), ID, GetActorLocation().X);
+
+	ABLOG_S(Warning);
+	ABLOG(Warning, TEXT("Actor Name : %s, ID: %d, Location x : %.3f"), *GetName(), ID, GetActorLocation().X)
 }
 
 // Called every frame
